@@ -1,0 +1,33 @@
+﻿@model VideoTranslator.Models.TranscriptionResult
+
+<h2>Resultado de la transcripción</h2>
+
+<p><strong>Archivo:</strong> @Model.FileName</p>
+<p><strong>Fecha:</strong> @Model.TranscribedAt</p>
+<p><strong>Tamaño:</strong> @Model.FileSize</p>
+<p><strong>Idioma seleccionado:</strong> @Model.Language</p>
+<p><strong>Idioma detectado:</strong> @Model.DetectedLanguage</p>
+<div class="card mt-3 shadow-sm">
+    <div class="card-body">
+        <pre class="mb-0" style="white-space: pre-wrap; max-height: 320px; overflow:auto;">
+@Model.TranscriptText
+    </pre>
+    </div>
+</div>
+
+<div class="d-flex gap-2 mt-3">
+    <form asp-action="ExportTxt" method="post">
+        <input type="hidden" name="fileName" value="@Model.FileName" />
+        <input type="hidden" name="language" value="@Model.Language" />
+        <textarea name="transcript" hidden>@Model.TranscriptText</textarea>
+        <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">
+            Exportar TXT
+        </button>
+    </form>
+
+    <a href="@Url.Action("Index", "VideoTranslator")"
+       class="btn btn-outline-secondary btn-lg rounded-pill shadow-sm">
+        Subir otro video
+    </a>
+</div>
+

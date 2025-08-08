@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Subir Video";
+}
+
+<h2>Subir video para transcripción</h2>
+
+<form asp-action="Index" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="videoFile">Selecciona un archivo de video</label>
+        <input type="file" class="form-control" name="videoFile" required />
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="language">Idioma del video</label>
+        <select class="form-control" name="language" required>
+            <option value="">-- Selecciona el idioma --</option>
+            <option value="en">Inglés</option>
+            <option value="es">Español</option>
+        </select>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Transcribir</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger mt-3">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}

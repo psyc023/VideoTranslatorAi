@@ -1,0 +1,2 @@
+VideoTranslator/Utils/Tools/whisper/ggml-base.bin filter=lfs diff=lfs merge=lfs -text
+VideoTranslator/Utils/Tools/ffmpeg/ffmpeg.exe filter=lfs diff=lfs merge=lfs -text
